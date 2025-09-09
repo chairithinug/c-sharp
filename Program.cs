@@ -447,18 +447,18 @@ public class DesktopDisplay : IObserver
     }
 }
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        WeatherStation weatherstation = new WeatherStation();
-        PhoneDisplay phoneDisplay = new PhoneDisplay();
-        DesktopDisplay desktopDisplay = new DesktopDisplay();
-        weatherstation.RegisterObserver(phoneDisplay);
-        weatherstation.RegisterObserver(desktopDisplay);
-        weatherstation.SetTemperature(25.0f);
-    }
-}
+// public class Program
+// {
+//     public static void Main(string[] args)
+//     {
+//         WeatherStation weatherstation = new WeatherStation();
+//         PhoneDisplay phoneDisplay = new PhoneDisplay();
+//         DesktopDisplay desktopDisplay = new DesktopDisplay();
+//         weatherstation.RegisterObserver(phoneDisplay);
+//         weatherstation.RegisterObserver(desktopDisplay);
+//         weatherstation.SetTemperature(25.0f);
+//     }
+// }
 
 
 // Another singleton
@@ -550,11 +550,119 @@ public class Program
 
 public class Person
 {
-    public string Name { get; set; }
+    public string Name { get; set; } // property
     public int Age { get; set; }
     public Person(string name, int age)
     {
         Name = name;
         Age = age;
     }
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"Name {Name} {Age}");
+    }
 }
+
+// public class Program
+// {
+//     public static void Main(string[] args)
+//     {
+//         Person neighbor = new Person("John Doe", 30);
+//         neighbor.Age = 31;
+//         neighbor.DisplayInfo();
+//     }
+// }
+
+
+
+// Async keyword
+// set up a separate worker for time-consuming tasks (IO, network)
+// Does not disturb the main flow of the application
+
+// public async Task GetDataAsync() { // Task for void, Task<string> for returned type string (return data)
+//     try
+//     {
+//         var data = await GetDataFromApi();
+//     }
+//     catch (Exception ex)
+//     {
+//         Console.WriteLine(data);
+//     }
+// }
+
+// await to wait for the BG task to happen before the main flow moving on 
+// pauses the execution of the method until the awaited task completes
+// await method is suspended
+// control given to the method you are calling
+// resume after completion
+
+// public async Task SimulateDelay() {
+//     await Task.Delay(5000);
+//     Console.WriteLine("Done after 5 sec");
+// }
+
+// public async Task ReadFileAsync(string filePath) {
+//     using (StreamReader reader = new StreamReader(filePath))
+//     {
+//         string content = await reader.ReadToEndAsync();
+//         Console.WriteLine(content);
+//     }
+// }
+
+// public async Task GetDataFromMultipleSources() {
+//     Task<string> data1 = GetDataFromApiAsync("https://api.example.com/data1");
+//     Task<string> data2 = GetDataFromApiAsync("https://api.example.com/data2");
+//     await Task.WhenAll(data1, data2);
+//     Console.WriteLine(data1.Result);
+//     Console.WriteLine(data2.Result);
+// }
+
+// public async Task GetDataWithHandling() {
+//     try
+//     {
+//         HttpClient client = new HttpClient();
+//         string data = await client.GetStringAsync("https://api.example.com/data");
+//         Console.WriteLine(data);
+//     }
+//     catch (HttpRequestException ex)
+//     {
+//         Console.WriteLine($"Request error {ex.Message}");
+//     }
+// }
+
+public class Program {
+    public async Task DownloadDataAsync()
+    {
+        Console.WriteLine("Download started");
+        await Task.Delay(5000);
+        Console.WriteLine("Download completed");
+    }
+
+    public async Task DownloadDataAsync2()
+    {
+        Console.WriteLine("Download 2 started");
+        await Task.Delay(2000);
+        Console.WriteLine("Download 2 completed");
+    }
+
+    public static async Task Main(string[] args)
+    {
+        try
+        {
+            Program program = new Program();
+            await program.DownloadDataAsync();
+            Console.WriteLine("Main completed");
+
+            Task task1 = program.DownloadDataAsync();
+            Task task2 = program.DownloadDataAsync2();
+            await Task.WhenAll(task1, task2);
+            Console.WriteLine("All tasks completed");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"crashed {ex.Message}");
+        }
+        
+    }
+}
+
