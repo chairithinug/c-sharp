@@ -630,39 +630,97 @@ public class Person
 //     }
 // }
 
-public class Program {
-    public async Task DownloadDataAsync()
-    {
-        Console.WriteLine("Download started");
-        await Task.Delay(5000);
-        Console.WriteLine("Download completed");
-    }
+// public class Program {
+//     public async Task DownloadDataAsync()
+//     {
+//         Console.WriteLine("Download started");
+//         await Task.Delay(5000);
+//         Console.WriteLine("Download completed");
+//     }
 
-    public async Task DownloadDataAsync2()
-    {
-        Console.WriteLine("Download 2 started");
-        await Task.Delay(2000);
-        Console.WriteLine("Download 2 completed");
-    }
+//     public async Task DownloadDataAsync2()
+//     {
+//         Console.WriteLine("Download 2 started");
+//         await Task.Delay(2000);
+//         Console.WriteLine("Download 2 completed");
+//     }
 
-    public static async Task Main(string[] args)
-    {
-        try
-        {
-            Program program = new Program();
-            await program.DownloadDataAsync();
-            Console.WriteLine("Main completed");
+//     public static async Task Main(string[] args)
+//     {
+//         try
+//         {
+//             Program program = new Program();
+//             await program.DownloadDataAsync();
+//             Console.WriteLine("Main completed");
 
-            Task task1 = program.DownloadDataAsync();
-            Task task2 = program.DownloadDataAsync2();
-            await Task.WhenAll(task1, task2);
-            Console.WriteLine("All tasks completed");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"crashed {ex.Message}");
-        }
-        
-    }
-}
+//             Task task1 = program.DownloadDataAsync();
+//             Task task2 = program.DownloadDataAsync2();
+//             await Task.WhenAll(task1, task2);
+//             Console.WriteLine("All tasks completed");
+//             // throw new InvalidOperationException("download error");
+//         }
+//         catch (Exception ex)
+//         {
+//             Console.WriteLine($"crashed {ex.Message}");
+//         }
+
+//     }
+// }
+
+// public async Task<List<Product>> FetchProductsAsync() {
+//     try
+//     {
+//         await Task.Delay(2000);
+//         return new List<Product> { new Product("EBag"), new Product("Resuable Straw") };
+//     }
+//     catch (Exception ex)
+//     {
+//         Console.WriteLine($"Error fetching products {ex.Message}");
+//         return new List<Product>();
+//     }
+// }
+
+// public async Task DisplayProductsAsync() {
+//     var products = await FetchProductsAsync();
+//     foreach (var product in products)
+//     {
+//         Console.WriteLine(product.Name);
+//     }
+// }
+
+// public async Task FetchDataAsync() {
+//     var productTask = FetchProductsAsync();
+//     var reviewsTask = FetchReviewsAsync();
+//     await Task.WhenAll(productTask, reviewsTask);
+// }
+
+// public class Program
+// {
+//     public static async Task PerformLongOperationAsync()
+//     {
+//         Console.WriteLine("Task started");
+//         await Task.Delay(2000);
+//         Console.WriteLine("Task done");
+//     }
+//     public static async Task PerformLongOperationAsync2()
+//     {
+//         try
+//         {
+//             Console.WriteLine("Task started");
+//             await Task.Delay(2000);
+//             throw new Exception("Sim error");
+//             Console.WriteLine("Task done");
+//         }
+//         catch (Exception ex)
+//         {
+//             Console.WriteLine($"{ex.Message}");
+//         }
+//     }
+//     public static void Main(string[] args)
+//     {
+//         Task.Run(async () => await PerformLongOperationAsync2()).Wait();
+//         Console.WriteLine("Main done");
+//     }
+
+// }
 
