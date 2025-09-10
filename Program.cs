@@ -724,3 +724,18 @@ public class Person
 
 // }
 
+
+// public class Product
+// {
+//     public static void Main(string[] args)
+//     {
+//         int number;
+//         Console.WriteLine("Enter a non-negative integer:");
+//         while (!int.TryParse(Console.ReadLine(), out number) || number < 0)
+//         {
+//             Console.WriteLine("Invalid input. Please enter a non-negative integer.");
+//         }
+//         double result = Math.Sqrt(number);
+//         Console.WriteLine("The square root is: " + result);
+//     }
+// }
