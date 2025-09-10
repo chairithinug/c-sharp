@@ -1,5 +1,7 @@
 mysql -u root -p
 
+SHOW DATABASES;
+
 CREATE DATABASE TechCorpDB;
 
 USE TechCorpDB;
@@ -59,3 +61,8 @@ JOIN Departments ON Employees.DepartmentID = Departments.DepartmentID;
 | Bjorn     | Andersen | Marketing      |
 | Makaela   | Lopez    | Marketing      |
 +-----------+----------+----------------+
+
+
+
+CREATE USER 'manager'@'localhost' IDENTIFIED BY 'StrongPassword123';
+GRANT ALL PRIVILEGES ON CompanyDB.* TO 'manager'@'localhost';
